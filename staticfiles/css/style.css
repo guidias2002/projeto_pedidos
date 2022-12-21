@@ -1,0 +1,19 @@
+body{
+    background-color: #ebeff5;
+}
+
+#total-pedidos{
+    background-color: #4cb4c7;
+} 
+
+#total-clientes{
+    background-color: #7abecc;
+} 
+
+#pedidos-entregues{
+    background-color: #7cd1c0;
+} 
+
+#pedidos-pendentes{
+    background-color: #4cb4c7;
+} 
