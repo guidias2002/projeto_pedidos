@@ -4,7 +4,7 @@
 
 <br>
 
-<div class="row">
+<div class="row mb-5">
     <div class="col-md">
         <div class="card card-body">
             <h5>Todos os pedidos</h5>
@@ -17,6 +17,8 @@
                     <th>Produto</th>
                     <th>Data do pedido</th>
                     <th>Status</th>
+                    <th>Atualizar</th>
+                    <th>Remover</th>
                 </tr>
                 {% for pedido in pedidos %}
                 <tr>
@@ -25,6 +27,8 @@
                     <td>{{pedido.produto}}</td>
                     <td>{{pedido.data_criacao}}</td>
                     <td>{{pedido.status}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'atualizar_pedido' pedido.id %}">Atualizar</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'excluir_pedido' pedido.id %}">Remover</a></td>
                 </tr>
                 {% endfor %}
             </table>

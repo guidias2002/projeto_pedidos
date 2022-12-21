@@ -61,8 +61,7 @@ def dashboard(request):
     
     pedidos_entregues = pedidos.filter(status='Entregue').reverse()
     cinco_ultimos_entregues = pedidos_entregues.order_by('data_criacao')[:5]
-
-
+    
     
     context = {'pedidos':pedidos, 'clientes':clientes, 'entregues':entregues, 'pendentes':pendentes, 'total_pedidos':total_pedidos, 'total_clientes':total_clientes, 'ultimos_cinco_pedidos':ultimos_cinco_pedidos, 'cinco_ultimos_entregues':cinco_ultimos_entregues}
     return render(request, 'contas/dashboard.html', context)
