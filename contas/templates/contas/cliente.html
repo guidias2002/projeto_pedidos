@@ -1,0 +1,86 @@
+{% extends 'contas/base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body mb-3">
+            <h5>Cliente: {{clientes.nome}}</h5>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'atualizar_cliente' clientes.id %}">Atualizar
+            cliente</a>
+            <a class="btn btn-outline-info btn-sm btn-block" href="{% url 'criar_pedido' clientes.id %}">Criar
+            pedido</a>
+            <a class="btn btn-outline-secondary btn-sm btn-block" href="{% url 'index' %}">Voltar</a>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body mb-3">
+            <h5>Informações de contato:</h5>
+            <hr>
+            <p><strong>Email:</strong> {{clientes.email}}</p>
+            <p><strong>Telefone:</strong> {{clientes.telefone}}</p>
+        </div>
+    </div>
+
+    <div class="col-md">
+        <div class="card card-body mb-3">
+            <h5>Total de pedidos do {{clientes.nome}}:</h5>
+            <hr>
+            <h1 style="text-align: center;padding: 10px;">{{total_pedidos_cliente}}</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {% csrf_token %}
+                {{meuFiltro.form}}
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body table-responsive">
+            <table class="table table-sm">
+                <h5>Detalhes dos pedidos do {{clientes.nome}}</h5>
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Produto</th>
+                    <th>Categoria</th>
+                    <th>Data do pedido</th>
+                    <th>Status</th>
+                    <th>Atualizar</th>
+                    <th>Remover</th>
+                </tr>
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>{{pedido.id}}</td>
+                    <td>{{pedido.produto}}</td>
+                    <td>{{pedido.produto.categoria}}</td>
+                    <td>{{pedido.data_criacao}}</td>
+                    <td>{{pedido.status}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'atualizar_pedido' pedido.id %}">Atualizar</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'excluir_pedido' pedido.id %}">Remover</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% endblock conteudo %}

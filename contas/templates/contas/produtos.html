@@ -1,0 +1,31 @@
+{% extends 'contas/base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class="card card-body">
+            <h5>Produtos</h5>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Produto</th>
+                    <th>Categoria</th>
+                    <th>Preço</th>
+                </tr>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{produto.nome}}</td>
+                    <td>{{produto.categoria}}</td>
+                    <td>R${{produto.preco|floatformat:2}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock conteudo %}

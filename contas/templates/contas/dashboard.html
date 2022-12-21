@@ -1,0 +1,101 @@
+{% extends 'contas/base.html' %}
+{% block conteudo %}
+{% load static %}
+
+<br>
+
+{% include 'contas/status.html' %}
+
+<div class="row">
+    <div class="col-md-5">
+        <br>
+        <h5>Clientes:</h5>
+        <hr>
+        <div class="card card-body table-responsive">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'criar_cliente' %}">Criar Cliente</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Telefone</th>
+                    <th>Detalhes</th>
+                    <th>Remover</th>
+                </tr>
+
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{cliente.nome}}</td>
+                    <td>{{cliente.telefone}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'cliente' cliente.id %}">Detalhes</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'excluir_cliente' cliente.id %}">Remover</a></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7">
+        <br>
+        <h5>Últimos cinco pedidos:</h5>
+        <hr>
+        <div class="card card-body table-responsive">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'pedidos' %}">Todos os pedidos</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>Id</th>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Data do pedido</th>
+                    <th>Status</th>
+                    <th>Atualizar</th>
+                    <th>Remover</th>
+                </tr>
+
+                {% for pedido in ultimos_cinco_pedidos %}
+                <tr>
+                    <td>{{pedido.id}}</td>
+                    <td>{{pedido.cliente.nome}}</td>
+                    <td>{{pedido.produto}}</td>
+                    <td>{{pedido.data_criacao}}</td>
+                    <td>{{pedido.status}}</td>
+                    <td><a class="btn btn-sm btn-info" href="{% url 'atualizar_pedido' pedido.id %}">Atualizar</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="{% url 'excluir_pedido' pedido.id %}">Remover</a></td>
+                </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md mb-3">
+        <br>
+        <h5>Últimos cinco pedidos entregues:</h5>
+        <hr>
+        <div class="card card-body table-responsive">
+            <table class="table table-sm">
+                <tr>
+                    <th>Id</th>
+                    <th>Cliente</th>
+                    <th>Produto</th>
+                    <th>Status</th>
+                </tr>
+
+                {% for pedidos in cinco_ultimos_entregues %}
+                <tr>
+                    <td>{{pedidos.id}}</td>
+                    <td>{{pedidos.cliente.nome}}</td>
+                    <td>{{pedidos.produto}}</td>
+                    <td>{{pedidos.status}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% endblock conteudo %}

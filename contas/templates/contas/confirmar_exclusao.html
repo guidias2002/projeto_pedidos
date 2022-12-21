@@ -1,0 +1,21 @@
+{% extends 'contas/base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<br>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <p>Tem certeza que deseja excluir o pedido do(a) {{pedido}}?</p>
+
+            <form action="{% url 'excluir_pedido' pedido.id %}" method="POST">
+                {% csrf_token %}
+                <input class="btn btn-danger" type="submit" name="Excluir">
+                <a class="btn btn-light" href="{% url 'index' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock conteudo %}

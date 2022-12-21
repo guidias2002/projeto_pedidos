@@ -1,0 +1,28 @@
+{% extends 'contas/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block conteudo %}
+
+<br>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {{form_cliente.nome|as_crispy_field}}
+                {{form_cliente.telefone|as_crispy_field}}              
+                {{form_cliente.email|as_crispy_field}}
+
+                <br>
+                <input class="btn btn-success" type="submit">
+                <a class="btn btn-light" href="{% url 'index' %}">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock conteudo %}
